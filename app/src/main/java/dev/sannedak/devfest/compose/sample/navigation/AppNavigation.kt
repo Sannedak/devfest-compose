@@ -59,13 +59,19 @@ private fun NavGraphBuilder.addVideoTopLevel() {
 }
 
 private fun NavGraphBuilder.addDoubleTextScreen() {
-    composable(DoubleTextDestination.route) {
+    composable(
+        route = DoubleTextDestination.route,
+        arguments = DoubleTextDestination.arguments
+    ) {
         DoubleTextScreen()
     }
 }
 
 private fun NavGraphBuilder.addSendDataScreen(navController: NavController) {
-    composable(SendDataDestination.route) {
+    composable(
+        route = SendDataDestination.route,
+        arguments = SendDataDestination.arguments
+    ) {
         SendDataScreen(toTicket = { name, surname ->
             navController.navigate(
                 ReceiveDataDestination.createReceiveDataDestination(name, surname)
@@ -75,13 +81,17 @@ private fun NavGraphBuilder.addSendDataScreen(navController: NavController) {
 }
 
 private fun NavGraphBuilder.addReceiveDataScreen(navController: NavController) {
-    composable(ReceiveDataDestination.route) { backStack ->
+    composable(
+        route = ReceiveDataDestination.route,
+        arguments = ReceiveDataDestination.arguments
+    ) { backStack ->
         val name = backStack.arguments?.getString(
             ReceiveDataDestination.NAME_STRING_PARAM
         ).orEmpty()
         val surname = backStack.arguments?.getString(
             ReceiveDataDestination.SURNAME_STRING_PARAM
         ).orEmpty()
+
         ReceiveDataScreen(
             name = name,
             surname = surname,
@@ -91,7 +101,10 @@ private fun NavGraphBuilder.addReceiveDataScreen(navController: NavController) {
 }
 
 private fun NavGraphBuilder.addVideoScreen() {
-    composable(VideoScreenDestination.route) {
+    composable(
+        route = VideoScreenDestination.route,
+        arguments = VideoScreenDestination.arguments
+    ) {
         VideoScreen()
     }
 }
